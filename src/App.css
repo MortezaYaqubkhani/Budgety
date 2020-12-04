@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+
+
+.jumbotron {
+  align-items: center;
+  display: flex;
+  background-image: url(./images/back.png);
+  background-size: cover;
+  background-color: #898888;
+  height: 500px;
+  color: white;
+}
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

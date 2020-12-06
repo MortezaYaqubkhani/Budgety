@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Top from './top';
 import Middle from './middleForm';
 import Bottom from './bottom';
-import Table from './common/table';
+import Table from './common/flushTable';
 
 class Budget extends Component {
   state = {
@@ -67,8 +67,8 @@ class Budget extends Component {
           totalIncome={this.totalIncomes()}
         />
         <Middle onAction={this.handleSubmit} />
-        <Bottom />
-        <Table data={expenses} />
+       
+        <Bottom data={this.state} />
       </div>
     );
   }

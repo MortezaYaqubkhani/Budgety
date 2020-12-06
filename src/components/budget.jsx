@@ -1,19 +1,16 @@
 import React, {Component} from 'react';
 import Top from './top';
-import Middle from './middle';
+import Middle from './middleForm';
 import Bottom from './bottom';
 import Table from './common/table';
 
 class Budget extends Component {
   state = {
-    expenses: [
-      {expenseId: null, expenseSubject: '424', expenditure: 200},
-      {expenseId: null, expenseSubject: '424', expenditure: 10},
-    ],
-    incomes: [{incomeId: null, incomeSubject: '', reward: 45}, {incomeId: null, incomeSubject: '', reward: 410}],
+    expenses: [{expenseId: "", expenseSubject: "", expenditure: 0}],
+    incomes: [{incomeId: "", incomeSubject: "", reward: 0}],
   };
 
-//function to calculate the total expense
+  //function to calculate the total expense
   totalExpenses = () => {
     let expenseTotal = 0;
     this.state.expenses.forEach((element) => {
@@ -21,8 +18,8 @@ class Budget extends Component {
     });
     return expenseTotal;
   };
-//function to calculate the total income
-totalIncomes = () => {
+  //function to calculate the total income
+  totalIncomes = () => {
     let incomeTotal = 0;
     this.state.incomes.forEach((element) => {
       incomeTotal += element.reward;
@@ -30,18 +27,46 @@ totalIncomes = () => {
     return incomeTotal;
   };
 
+  handleSubmit = (ev) => {
+    //if expense
+    if (ev.isIncome === 'false') {
+      const expenses = [...this.state.expenses];
+      let newExpense = {};
+
+      newExpense.expenseId = Date.now().toString();
+      newExpense.expenseSubject = ev.explanation;
+      newExpense.expenditure = parseInt(ev.value);
+      expenses.push(newExpense);
+      this.setState({expenses});
+      console.log(this.state.expenses);
+    }
+    //income
+    if (ev.isIncome === 'true') {
+      const incomes = [...this.state.incomes];
+      let newIncome = {};
+
+      newIncome.incomeId = Date.now().toString();
+      newIncome.incomeSubject = ev.explanation;
+      newIncome.reward = parseInt(ev.value);
+      incomes.push(newIncome);
+      this.setState({incomes});
+      console.log(this.state.incomes);
+    }
+  };
   //function for doing actions on the original list
   onAction = (cla) => {
     console.log();
   };
   render() {
-      //object restructuring
-      const { expenses, incomes } = this.state
+    //object restructuring
+    const {expenses, incomes} = this.state;
     return (
       <div>
-<p></p>
-        <Top totalExpense={this.totalExpenses()} totalIncome={this.totalIncomes()} />
-        <Middle onAction={this.action} />
+        <Top
+          totalExpense={this.totalExpenses()}
+          totalIncome={this.totalIncomes()}
+        />
+        <Middle onAction={this.handleSubmit} />
         <Bottom />
         <Table data={expenses} />
       </div>
@@ -50,3 +75,4 @@ totalIncomes = () => {
 }
 
 export default Budget;
+//ezafe kardane unique be joi

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TotalBudget from './common/totalBudget';
 import ExpenseIncomeCard from './common/expenseIncomeCard.jsx';
+import BarChart from './barChart';
 
 class TOP extends Component {
   //constructor
@@ -20,7 +21,7 @@ class TOP extends Component {
       <div>
         <section className="jumbotron">
           <div className="container">
-            <TotalBudget total={total} />
+            {/* <TotalBudget total={total} /> */}
 
             <ExpenseIncomeCard
               type="Income"
@@ -33,6 +34,7 @@ class TOP extends Component {
               income={income}
               expense={expense}
             />
+            {/* <BarChart data={this.props.data} /> */}
           </div>
         </section>
       </div>

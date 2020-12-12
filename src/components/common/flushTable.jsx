@@ -1,4 +1,7 @@
 import React from 'react';
+import BarChart from '../barChart';
+import { ListGroup } from 'react-bootstrap';
+
 
 const FlushTable = ({type, data}) => {
   //
@@ -7,11 +10,11 @@ const FlushTable = ({type, data}) => {
   if (type === "expense")
   return (
     <div className="col" >
-      <ul className="list-group list-group-flush m-3">
+      <ListGroup variant="flush">
         {data.map((item) => (
-          <li className="list-group-item">{item.expenseSubject}</li>
+          <ListGroup.Item>{item.expenseSubject}</ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     </div>
   );
   if (type === "income")
@@ -22,6 +25,7 @@ const FlushTable = ({type, data}) => {
           <li className="list-group-item">{item.incomeSubject}</li>
         ))}
       </ul>
+     
     </div>
   );
 };

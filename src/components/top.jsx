@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TotalBudget from './common/totalBudget';
 import ExpenseIncomeCard from './common/expenseIncomeCard.jsx';
 import BarChart from './barChart';
+import {Button, Jumbotron, Container, Row, Col} from 'react-bootstrap';
 
 class TOP extends Component {
   //constructor
@@ -15,32 +16,35 @@ class TOP extends Component {
   render() {
     //object destructuring
     const {totalExpense: expense, totalIncome: income} = this.props;
-    const total = income - expense;
+    const total = {income, expense};
     //
     return (
-      <div>
-        <section className="jumbotron">
-          <div className="container">
-            {/* <TotalBudget total={total} /> */}
-
-            <ExpenseIncomeCard
-              type="Income"
-              income={this.props.totalIncome}
-              expense={expense}
-            />
-
-            <ExpenseIncomeCard
-              type="Expense"
-              income={income}
-              expense={expense}
-            />
-            {/* <BarChart data={this.props.data} /> */}
-          </div>
-        </section>
-      </div>
+      <Jumbotron>
+        <Container>
+          <Row>
+            <Col xs={12} md={8}>
+              <h5>Available Budget in December 2020:</h5>
+              <br />
+              <h4>0.00</h4>
+              <ExpenseIncomeCard
+                type="Income"
+                income={this.props.totalIncome}
+                expense={expense}
+              />
+              <ExpenseIncomeCard
+                type="Expense"
+                income={income}
+                expense={expense}
+              />
+            </Col>
+            <Col xs={12} md={4}>
+              pie chart{' '}
+            </Col>
+          </Row>
+        </Container>
+      </Jumbotron>
     );
   }
 }
 
 export default TOP;
-<p>this is the top section</p>;

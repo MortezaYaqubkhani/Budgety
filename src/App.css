@@ -9,9 +9,9 @@
   display: flex;
   background-image: url(./images/back.png);
   background-size: cover;
-  background-color: #898888;
+  background-color: rgb(12, 3, 3);
   height: 500px;
-  color: white;
+  color: rgb(252, 247, 247);
 }
 
 

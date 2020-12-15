@@ -1,16 +1,40 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import TotalBudget from './common/totalBudget';
 import ExpenseIncomeCard from './common/expenseIncomeCard.jsx';
 import BarChart from './barChart';
 import {Button, Jumbotron, Container, Row, Col} from 'react-bootstrap';
+import Piechart from './FPieChart';
 
 class TOP extends Component {
   //constructor
   constructor(props) {
     super(props);
-    // Don't call this.setState() here!
-    // this.state = {counter: 0};
-    // this.handleClick = this.handleClick.bind(this);
+    //
+    this.state =  {
+      columnWidth: 0
+    }
+  }
+
+  resizeObserver = null;
+  resizeElement = createRef();
+
+  componentDidMount() {
+    this.resizeObserver = new ResizeObserver((entries) => {
+      for (let e of entries) {
+        console.log(e, e.contentBoxSize[0]);
+        const columnWidth = e.contentBoxSize[0].inlineSize;
+        console.log(columnWidth);
+        this.setState({columnWidth});
+      }
+    });
+
+    this.resizeObserver.observe(this.resizeElement.current);
+  }
+
+  componentWillUnmount() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
   //
   render() {
@@ -26,19 +50,24 @@ class TOP extends Component {
               <h5>Available Budget in December 2020:</h5>
               <br />
               <h4>0.00</h4>
-              <ExpenseIncomeCard
-                type="Income"
-                income={this.props.totalIncome}
-                expense={expense}
-              />
-              <ExpenseIncomeCard
-                type="Expense"
-                income={income}
-                expense={expense}
-              />
+              <Row>
+                <ExpenseIncomeCard
+                  type="Income"
+                  income={this.props.totalIncome}
+                  expense={expense}
+                />
+              </Row>
+              <Row>
+                <ExpenseIncomeCard
+                  type="Expense"
+                  income={income}
+                  expense={expense}
+                />
+              </Row>
             </Col>
-            <Col xs={12} md={4}>
-              pie chart{' '}
+            <Col xs={12} md={4} ref={this.resizeElement}>
+              pie chart{' '} {this.state.columnWidth}
+              <Piechart width={this.state.columnWidth} data={total} />
             </Col>
           </Row>
         </Container>

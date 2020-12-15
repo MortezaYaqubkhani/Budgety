@@ -1,0 +1,1 @@
+- december 14, the next part would be creating a component for heading and importing pie chart to the heading

@@ -57,3 +57,18 @@
   border-bottom: 1px solid #e7e7e7;
   background-color: #f7f7f7;
 }
+
+.budget__income,
+.budget__expenses {
+    padding: 12px;
+    text-transform: uppercase;
+}
+
+.budget__income {
+    margin-bottom: 10px;
+    background-color: #28B9B5;
+}
+
+.budget__expense {
+    background-color: #FF5049;
+}

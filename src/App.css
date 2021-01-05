@@ -2,19 +2,23 @@
   text-align: center;
 }
 
-
-
 .jumbotron {
   align-items: center;
   display: flex;
-  background-image: url(./images/back.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(./images/back.png);
   background-size: cover;
-  background-color: rgb(12, 3, 3);
-  height: 500px;
-  color: rgb(252, 247, 247);
+  height: 40vh;
+  color: #fff;
 }
 
-
+body {
+  color: #555;
+  font-family: Open Sans;
+  font-size: 16px;
+  position: relative;
+  height: 100vh;
+  font-weight: 400;
+}
 
 .App-logo {
   height: 40vmin;
@@ -71,4 +75,28 @@
 
 .budget__expense {
     background-color: #FF5049;
+}
+
+.budget__title {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.budget__value {
+  font-weight: 300;
+  font-size: 46px;
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+}
+
+.budget {
+  position: absolute;
+  width: 350px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
 }

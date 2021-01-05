@@ -10,9 +10,9 @@ class TOP extends Component {
   constructor(props) {
     super(props);
     //
-    this.state =  {
-      columnWidth: 0
-    }
+    this.state = {
+      columnWidth: 0,
+    };
   }
 
   resizeObserver = null;
@@ -40,16 +40,20 @@ class TOP extends Component {
   render() {
     //object destructuring
     const {totalExpense: expense, totalIncome: income} = this.props;
-    const total = {income, expense};
+    const total = [{title: income}, {title: expense}];
+    console.log(total);
     //
     return (
       <Jumbotron>
-        <Container>
+        <Container >
           <Row>
             <Col xs={12} md={8}>
-              <h5>Available Budget in December 2020:</h5>
-              <br />
-              <h4>0.00</h4>
+              <div className="budget__title">
+                Available Budget in{' '}
+                <span class="budget__title--month">%Month%</span>:
+              </div>
+
+              <div className="budget__value">+ 2,345.64</div>
               <Row>
                 <ExpenseIncomeCard
                   type="Income"
@@ -66,7 +70,7 @@ class TOP extends Component {
               </Row>
             </Col>
             <Col xs={12} md={4} ref={this.resizeElement}>
-              pie chart{' '} {this.state.columnWidth}
+              
               <Piechart width={this.state.columnWidth} data={total} />
             </Col>
           </Row>
